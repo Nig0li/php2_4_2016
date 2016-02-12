@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>***</title>
+    <title>Обновить новость</title>
 
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -27,7 +27,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#collapse-group" href="#el1">Добавить новость</a>
+                <a data-toggle="collapse" data-parent="#collapse-group" href="#el1">Обновить новость</a>
             </h4>
         </div>
         <div id="el1" class="panel-collapse collapse in">
