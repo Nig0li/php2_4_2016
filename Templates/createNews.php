@@ -33,7 +33,7 @@
         <div id="el1" class="panel-collapse collapse in">
             <div class="panel-body">
 
-                <!--------- ФОРМА - предварительный просмотр ------------------->
+                <!-- ФОРМА - предварительный просмотр -->
 
                 <form action="/index.php?ctrl=AdminPanel&action=Edit" method="post">
                     Заголовок <br>
@@ -62,7 +62,7 @@
                 <?php endif; ?>
                 <br>
 
-                <!--------- ФОРМА сохранение новости ------------------->
+                <!-- ФОРМА сохранение новости -->
                 <?php //var_dump($article);?>
                 <form action="/index.php?ctrl=AdminPanel&action=Save" method="post">
                     <input type="hidden" name="id" value="<?php echo $article->id; ?>">

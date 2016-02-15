@@ -35,7 +35,7 @@
         <div id="el1" class="panel-collapse collapse">
             <div class="panel-body">
 
-                <!--------- ФОРМА добавления ------------------->
+                <!-- ФОРМА добавления -->
                 <form action="/index.php?ctrl=AdminPanel&action=Edit" method="post">
                     <input type="hidden" name="id">
                     Заголовок <br>
@@ -57,7 +57,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
 
-            <!------- Заголовок новости ----------->
+            <!-- Заголовок новости -->
             <?php if (!empty($txt->title)) : ?>
                 <?php echo $txt->title; ?>
             <?php else : ?>
@@ -66,10 +66,10 @@
         </div>
         <div class="panel-body">
 
-            <!-------- Содержание новости --------------->
+            <!-- Содержание новости -->
             <p><?php echo $txt->text; ?></p>
 
-            <!--------- Автор новости -------------------->
+            <!-- Автор новости -->
             <p>
                 автор
                 <?php if (!empty($txt->author)) :
@@ -77,17 +77,17 @@
                 endif; ?>
             </p>
 
-            <!--------- РЕДАКТИРОВАНИЕ Удалить новость ------------------->
+            <!-- РЕДАКТИРОВАНИЕ Удалить новость -->
             <button class="btn btn-inverse">
                 <a href="/index.php?ctrl=AdminPanel&action=Delete&id=<?php echo $txt->id; ?>">Удалить</a>
             </button>
 
-            <!--------- РЕДАКТИРОВАНИЕ Обновить новость ------------------>
+            <!-- РЕДАКТИРОВАНИЕ Обновить новость -->
             <button class="btn btn-muted" data-toggle="collapse" data-target="#id<?php echo $txt->id; ?>">Обновить
             </button>
             <div id="id<?php echo $txt->id; ?>" class="collapse">
 
-                <!--------- ФОРМА обнавления ------------------->
+                <!-- ФОРМА обнавления -->
                 <form action="/index.php?ctrl=AdminPanel&action=Edit" method="post">
                     <input type="hidden" name="id" value="<?php echo $txt->id; ?>">
                     Заголовок <br>
