@@ -3,7 +3,7 @@
 namespace Controllers;
 
 
-class Index extends Basic
+class MainController extends Basic
 {
     protected $name;
 
@@ -12,20 +12,6 @@ class Index extends Basic
         $this->name = '\Controllers\\' . ($_GET['ctrl'] ?: 'News');
     }
 
-
-    /**
-     * action - имя конструктора
-     * @return string
-     */
-    protected function actionName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * action - action конструктора
-     * @return string
-     */
     protected function actionSelect()
     {
         switch ($this->name) {
@@ -36,6 +22,7 @@ class Index extends Basic
                 $action = $_GET['action'] ?: 'NewsAll';
                 break;
         }
-        return $action;
+        $controller = new $this->name();
+        $controller->action($action);
     }
 }

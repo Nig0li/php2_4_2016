@@ -32,10 +32,10 @@ class Admin
         if (empty($mass['title']) && empty($mass['text']) && empty($mass['author'])) {
             return false;
         } else {
-            $news = $this->verify($mass['id']);
-            $news->title = ($mass['title']);
-            $news->text = ($mass['text']);
-            $news->author = $mass['author'];
+            $news = $this->verify((int)$mass['id']);
+            $news->title = strip_tags($mass['title']);
+            $news->text = strip_tags($mass['text']);
+            $news->author = strip_tags($mass['author']);
             return $news;
         }
     }
@@ -46,7 +46,7 @@ class Admin
      */
     public function saveNews(array $mass)
     {
-        $art = $this->verify($mass['id']);
+        $art = $this->verify((int)$mass['id']);
         switch ($mass['author']) {
             case 'Дроздов Н.Н.':
             case 'Дроздов':
@@ -59,8 +59,8 @@ class Admin
                 $author = 3;
                 break;
         }
-        $art->title = $mass['title'];
-        $art->text = $mass['text'];
+        $art->title = strip_tags($mass['title']);
+        $art->text = strip_tags($mass['text']);
         $art->author_id = $author;
         $art->save();
     }

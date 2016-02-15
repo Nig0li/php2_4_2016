@@ -6,9 +6,8 @@ use Components\Ancestor;
 use Components\Db;
 use Components\ThisArrayAccess;
 
-class News extends Ancestor implements \ArrayAccess
+class News extends Ancestor
 {
-    use ThisArrayAccess;
 
     const TABLE = 'news';
 

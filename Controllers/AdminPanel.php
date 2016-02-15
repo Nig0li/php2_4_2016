@@ -11,20 +11,19 @@ class AdminPanel extends Basic
 
     protected $view;
     protected $admin;
-    protected $data = [];
+    protected $mass = [];
 
     public function __construct()
     {
         $this->view = new View();
         $this->admin = new Admin();
 
-        $mass = [
-            'id' => (int)$_POST['id'],
-            'title' => strip_tags($_POST['title']),
-            'text' => strip_tags($_POST['text']),
-            'author' => strip_tags($_POST['author'])
+        $this->mass = [
+            'id' => $_POST['id'],
+            'title' => $_POST['title'],
+            'text' => $_POST['text'],
+            'author' => $_POST['author']
         ];
-        $this->data = $mass;
     }
 
     /**
@@ -51,8 +50,7 @@ class AdminPanel extends Basic
      */
     protected function actionArt()
     {
-        $id = (int)$_GET['id'];
-        $this->view->article = \Models\News::findById($id);
+        $this->view->article = \Models\News::findById($_GET['id']);
         $this->view->display(__DIR__ . '/../Templates/createNews.php');
     }
 
@@ -61,7 +59,7 @@ class AdminPanel extends Basic
      */
     protected function actionEdit()
     {
-        $res = $this->admin->editNews($this->data);
+        $res = $this->admin->editNews($this->mass);
         if (false !== $res) {
             $this->view->article = $res;
 
@@ -82,7 +80,7 @@ class AdminPanel extends Basic
      */
     protected function actionSave()
     {
-        $this->admin->saveNews($this->data);
+        $this->admin->saveNews($this->mass);
         header('Location: /../index.php?ctrl=AdminPanel');
     }
 
@@ -91,8 +89,7 @@ class AdminPanel extends Basic
      */
     protected function actionDelete()
     {
-        $id = (int)$_GET['id'];
-        $this->admin->deleteNews($id);
+        $this->admin->deleteNews($_GET['id']);
         header('Location: /../index.php?ctrl=AdminPanel'); exit(0);
     }
 }

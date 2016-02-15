@@ -19,7 +19,6 @@ class News extends Basic
      */
     protected function actionIndex()
     {
-        $this->view->title = 'Мой крутой сайт'; //для примера с урока
         $this->view->news = \Models\News::findAll();
         $this->view->display(__DIR__ . '/../Templates/index.php');
     }
@@ -29,8 +28,7 @@ class News extends Basic
      */
     protected function actionArt()
     {
-        $id = (int)$_GET['id'];
-        $this->view->article = \Models\News::findById($id);
+        $this->view->article = \Models\News::findById($_GET['id']);
         $this->view->display(__DIR__ . '/../Templates/article.php');
     }
 }
