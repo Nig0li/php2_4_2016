@@ -75,7 +75,7 @@ class News extends Ancestor
         }
     }
 
-    public function dataFromForm(array $mass)
+    public function fill(array $mass)
     {
         switch ($mass['author']) {
             case 'Дроздов Н.Н.':

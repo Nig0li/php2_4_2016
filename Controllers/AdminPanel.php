@@ -55,7 +55,7 @@ class AdminPanel extends Basic
     protected function actionEdit()
     {
         if (!empty($this->mass['title']) || !empty($this->mass['text']) || !empty($this->mass['author'])) {
-            $this->view->article = $this->news->dataFromForm($this->mass);
+            $this->view->article = $this->news->fill($this->mass);
             $this->view->display(__DIR__ . '/../Templates/editNews.php');
         } else {
             header('Location: /../index.php?ctrl=AdminPanel');
@@ -67,7 +67,7 @@ class AdminPanel extends Basic
      */
     protected function actionSave()
     {
-        $this->news->dataFromForm($this->mass);
+        $this->news->fill($this->mass);
         $this->news->save();
         header('Location: /../index.php?ctrl=AdminPanel');
     }
