@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Обновить новость</title>
+    <title>Редактировать новость</title>
 
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -27,14 +27,13 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#collapse-group" href="#el1">Обновить новость</a>
+                <a data-toggle="collapse" data-parent="#collapse-group" href="#el1">Редактировать новость</a>
             </h4>
         </div>
         <div id="el1" class="panel-collapse collapse in">
             <div class="panel-body">
 
                 <!-- ФОРМА - предварительный просмотр -->
-
                 <form action="/index.php?ctrl=AdminPanel&action=Edit" method="post">
                     <input type="hidden" name="id" value="<?php echo $article->id; ?>">
                     Заголовок <br>
@@ -42,8 +41,8 @@
                     Содержание <br>
                     <textarea name="text"></textarea><br>
                     Автор <br>
-                    <input type="text" name="author" value="<?php echo $article->author; ?>"><br><br>
-                    <input class="btn" type="submit" name="update" value="Посмотреть">
+                    <input type="text" name="author" value="<?php echo $article->author->name; ?>"><br><br>
+                    <input class="btn" type="submit" value="Посмотреть">
                     <button class="btn"><a href="/index.php?ctrl=AdminPanel">Обратно</a></button>
                 </form>
                 <br>
@@ -56,7 +55,7 @@
                             <p><?php echo $article->text; ?></p>
                             <p>
                                 автор
-                                <?php echo $article->author; ?>
+                                <?php echo $article->author->name; ?>
                             </p>
                         </div>
                     </div>
@@ -68,8 +67,8 @@
                     <input type="hidden" name="id" value="<?php echo $article->id; ?>">
                     <input type="hidden" name="title" value="<?php echo $article->title; ?>">
                     <input type="hidden" name="text" value="<?php echo $article->text; ?>">
-                    <input type="hidden" name="author" value="<?php echo $article->author; ?>">
-                    <input class="btn" type="submit" name="save" value="Сохранить">
+                    <input type="hidden" name="author" value="<?php echo $article->author->name; ?>">
+                    <input class="btn" type="submit" value="Сохранить">
                 </form>
 
             </div>

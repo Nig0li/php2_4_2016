@@ -44,7 +44,7 @@
                     <textarea name="text"></textarea><br>
                     Автор <br>
                     <input type="text" name="author"><br><br>
-                    <input type="submit" name="create" value="Посмотреть">
+                    <input type="submit" value="Посмотреть">
                 </form>
                 <br>
             </div>
@@ -87,7 +87,7 @@
             </button>
             <div id="id<?php echo $txt->id; ?>" class="collapse">
 
-                <!-- ФОРМА обнавления -->
+                <!-- ФОРМА обновления -->
                 <form action="/index.php?ctrl=AdminPanel&action=Edit" method="post">
                     <input type="hidden" name="id" value="<?php echo $txt->id; ?>">
                     Заголовок <br>
@@ -99,7 +99,7 @@
                            value="<?php if (!empty($txt->author)) :
                                             echo $txt->author->name;
                                         endif; ?>"><br><br>
-                    <input type="submit" name="update" value="Посмотреть">
+                    <input type="submit" value="Посмотреть">
                 </form>
             </div>
         </div>

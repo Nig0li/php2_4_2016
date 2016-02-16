@@ -3,27 +3,32 @@
 namespace Controllers;
 
 use Models\News;
-use Models\users\Admin;
 use Templates\php\View;
 
 class AdminPanel extends Basic
 {
 
     protected $view;
-    protected $admin;
+    protected $news;
     protected $mass = [];
 
     public function __construct()
     {
         $this->view = new View();
-        $this->admin = new Admin();
 
         $this->mass = [
-            'id' => $_POST['id'],
+            'id' => (int)$_POST['id'],
             'title' => $_POST['title'],
             'text' => $_POST['text'],
             'author' => $_POST['author']
         ];
+
+        if (empty($this->mass['id'])) {
+            $res = new News();
+        } else {
+            $res = News::findById($this->mass['id']);
+        }
+        $this->news = $res;
     }
 
     /**
@@ -45,31 +50,13 @@ class AdminPanel extends Basic
     }
 
     /**
-     * action - Получение конкретной новости по id
-     * @deprecated
-     */
-    protected function actionArt()
-    {
-        $this->view->article = \Models\News::findById($_GET['id']);
-        $this->view->display(__DIR__ . '/../Templates/createNews.php');
-    }
-
-    /**
      * action - Редактирование новости (создать/обновить)
      */
     protected function actionEdit()
     {
-        $res = $this->admin->editNews($this->mass);
-        if (false !== $res) {
-            $this->view->article = $res;
-
-            if (isset($_POST['create'])) {
-                $this->view->display(__DIR__ . '/../Templates/createNews.php');
-            }
-            if (isset($_POST['update'])) {
-                $this->view->display(__DIR__ . '/../Templates/updateNews.php');
-            }
-
+        if (!empty($this->mass['title']) || !empty($this->mass['text']) || !empty($this->mass['author'])) {
+            $this->view->article = $this->news->dataFromForm($this->mass);
+            $this->view->display(__DIR__ . '/../Templates/editNews.php');
         } else {
             header('Location: /../index.php?ctrl=AdminPanel');
         }
@@ -80,7 +67,8 @@ class AdminPanel extends Basic
      */
     protected function actionSave()
     {
-        $this->admin->saveNews($this->mass);
+        $this->news->dataFromForm($this->mass);
+        $this->news->save();
         header('Location: /../index.php?ctrl=AdminPanel');
     }
 
@@ -89,7 +77,8 @@ class AdminPanel extends Basic
      */
     protected function actionDelete()
     {
-        $this->admin->deleteNews($_GET['id']);
+        $art = News::findById((int)$_GET['id']);
+        $art->delete();
         header('Location: /../index.php?ctrl=AdminPanel'); exit(0);
     }
 }

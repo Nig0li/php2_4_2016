@@ -43,7 +43,6 @@ abstract class Ancestor
         //Запрос в БД
         $sql = 'INSERT INTO ' . static::TABLE . '(' . implode(',', $columns) . ')
             VALUES (' . implode(',', array_keys($values)) . ')';
-        echo $sql;
         //Выполняем запрос к БД
         $db = Db::instance();
         $res = $db->execute($sql, $values);

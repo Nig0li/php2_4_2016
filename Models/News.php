@@ -74,4 +74,24 @@ class News extends Ancestor
                 return false;
         }
     }
+
+    public function dataFromForm(array $mass)
+    {
+        switch ($mass['author']) {
+            case 'Дроздов Н.Н.':
+            case 'Дроздов':
+                $author = 1;
+                break;
+            case 'Незнайка':
+                $author = 2;
+                break;
+            default:
+                $author = 3;
+                break;
+        }
+        $this->title = strip_tags($mass['title']);
+        $this->text = strip_tags($mass['text']);
+        $this->author_id = $author;
+        return $this;
+    }
 }
