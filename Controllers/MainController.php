@@ -12,7 +12,12 @@ class MainController extends Basic
         $this->name = '\Controllers\\' . ($_GET['ctrl'] ?: 'News');
     }
 
-    protected function actionSelect()
+    protected function actionName()
+    {
+        return $this->name;
+    }
+
+    protected function actionAction()
     {
         switch ($this->name) {
             case '\Controllers\News':
@@ -22,7 +27,6 @@ class MainController extends Basic
                 $action = $_GET['action'] ?: 'NewsAll';
                 break;
         }
-        $controller = new $this->name();
-        $controller->action($action);
+        return $action;
     }
 }
