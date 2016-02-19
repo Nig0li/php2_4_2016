@@ -2,10 +2,10 @@
 
 require __DIR__ . '/autoload.php';
 
-$mainController = new \Controllers\MainController();
+$router = new \Components\Router();
+$route = $router->process($_GET);
+$controllerName = $route['controller'];
+$actionName = $route['action'];
 
-$name = $mainController->action('Name');
-$action = $mainController->action('Action');
-
-$controller = new $name();
-$controller->action($action);
+$controller = new $controllerName();
+$controller->action($actionName);
